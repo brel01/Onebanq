@@ -184,8 +184,7 @@ Run the migration to create necessary tables: `php artisan migrate`
       "status": "completed",
       "created_at": "2023-01-01T12:00:00Z",
       "updated_at": "2023-01-01T12:00:00Z"
-    },
-    // Additional transactions...
+    }    
   ]
 }
 ```
