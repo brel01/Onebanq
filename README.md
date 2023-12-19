@@ -60,13 +60,158 @@ Run the migration to create necessary tables: `php artisan migrate`
 - `GET /api/v1/transaction-history`
 
 --- 9. API Routes
+- `/api/v1/register`: User Registration
+  - **Type:** `POST`
+  - **Endpoint:** `/api/v1/register`
 
---- Overview
-- `/api/v1/register`: User registration
+#### Parameters
+
+| Parameter  | Type     | Description           |
+|------------|----------|-----------------------|
+| `name`     | String   | User's full name.     |
+| `email`    | String   | User's email address. |
+| `phone`    | String   | User's phone number.  |
+| `password` | String   | User's password.      |
+
+#### Response
+
+```json
+{
+  "status": "success",
+  "message": "User registered successfully",
+  "data": {
+    "user": {
+      "id": 1,
+      "name": "Obi Sola",
+      "email": "obisola@example.com",
+      "phone": "090838298949",
+      "created_at": "2023-01-01T12:00:00Z",
+      "updated_at": "2023-01-01T12:00:00Z"
+    },
+    "access_token": "your_access_token"
+  }
+}
+
+
+
+
 - `/api/v1/login`: User login
+  - **Type:** `POST`
+  - **Endpoint:** `/api/v1/register`
+
+#### Parameters
+
+| Parameter  | Type     | Description           |
+|------------|----------|-----------------------|
+| `email`    | String   | User's email address. |
+| `password` | String   | User's password.      |
+
+#### Response
+
+```json
+{
+  "status": "success",
+  "message": "User logged in successfully",
+  "data": {
+    "user": {
+      "id": 1,
+      "name": "Obi Sola",
+      "email": "obisola@example.com",
+      "created_at": "2023-01-01T12:00:00Z",
+      "updated_at": "2023-01-01T12:00:00Z"
+    },
+    "access_token": "your_access_token"
+  }
+}
+
+
+
 - `/api/v1/payment`: Payment initiation
+ - **Type:** `POST`  
+  - **Authentication:** Requires a valid JWT token in the request headers.
+### Headers
+|      Header     |      Value        |   Description          |
+|-----------------|-------------------|------------------------|
+| `Authorization` | Bearer {JWT Token}| User's access token.   |
+
+#### Parameters
+
+| Parameter  | Type     | Description           |
+|------------|----------|-----------------------|
+| `amount`   | Number   | Payment amount.       |
+
+
+```json
+{
+  "status": "success",
+  "message": "Payment initiated successfully",
+  "data": {
+    "transaction_id": 123,
+    "amount": 2000,
+    "status": "initiated",
+    "created_at": "2023-01-01T12:00:00Z"
+  }
+}
+
+
+
+
 - `/api/v1/transaction-history`: Fetch transaction history
+  - **Type:** `POST`  
+  - **Authentication:** Requires a valid JWT token in the request headers.
+
+#### Parameters
+
+| Parameter | Type   | Description                       |
+|-----------|--------|-----------------------------------|
+| None      |        | No additional parameters required for this endpoint. |
+
+#### Request Headers
+
+| Header          | Value                | Description                      |
+|-----------------|----------------------|----------------------------------|
+| Authorization   | Bearer {JWT Token}   | Required for user authentication.|
+
+#### Response
+
+```json
+{
+  "transactions": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "amount": 2000,
+      "status": "completed",
+      "created_at": "2023-01-01T12:00:00Z",
+      "updated_at": "2023-01-01T12:00:00Z"
+    },
+    // Additional transactions...
+  ]
+}
+
+
 - `/api/v1/logout`: User logout
+  - **Type:** `POST`  
+  - **Authentication:** Requires a valid JWT token in the request headers.
+
+#### Parameters
+
+| Parameter | Type   | Description                       |
+|-----------|--------|-----------------------------------|
+| None      |        | No additional parameters required for this endpoint. |
+
+#### Request Headers
+
+| Header          | Value                | Description                      |
+|-----------------|----------------------|----------------------------------|
+| Authorization   | Bearer {JWT Token}   | Required for user authentication.|
+
+#### Response
+
+```json
+{
+  "message": "Successfully logged out",
+}
 
 --- 10. Middleware
 
