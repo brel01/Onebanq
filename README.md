@@ -91,7 +91,7 @@ Run the migration to create necessary tables: `php artisan migrate`
     "access_token": "your_access_token"
   }
 }
-
+```
 
 
 
@@ -124,7 +124,7 @@ Run the migration to create necessary tables: `php artisan migrate`
   }
 }
 
-
+```
 
 - `/api/v1/payment`: Payment initiation
  - **Type:** `POST`  
@@ -153,7 +153,7 @@ Run the migration to create necessary tables: `php artisan migrate`
   }
 }
 
-
+```
 
 
 - `/api/v1/transaction-history`: Fetch transaction history
@@ -188,7 +188,7 @@ Run the migration to create necessary tables: `php artisan migrate`
     // Additional transactions...
   ]
 }
-
+```
 
 - `/api/v1/logout`: User logout
   - **Type:** `POST`  
@@ -212,6 +212,8 @@ Run the migration to create necessary tables: `php artisan migrate`
 {
   "message": "Successfully logged out",
 }
+```
+
 
 --- 10. Middleware
 
